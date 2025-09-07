@@ -1,19 +1,30 @@
 from kafka import KafkaProducer
+from kafka.errors import NoBrokersAvailable
 import json
+import os
+import time
 
-from data_preproccess.draft import meta_data
+class Producer:
+    def __init__(self):
+        kafka_broker = os.getenv("KAFKA_BROKER","kafka:9092")
+        while True:
+            try:
+                self.producer = KafkaProducer(
+                    bootstrap_servers=[kafka_broker],
+                    value_serializer=lambda x: json.dumps(x).encode('utf-8')
+                )
+                print("Connected to Kafka!")
+                break
+            except NoBrokersAvailable:
+                print("Kafka broker not ready yet, waiting...")
+                time.sleep(2)
 
-# Initialize KafkaProducer with Kafka broker details
-producer = KafkaProducer(
-    bootstrap_servers=['localhost:9092'],  # Replace with your Kafka broker address
-    value_serializer=lambda v: json.dumps(v).encode('utf-8') # Serialize messages to JSON
-)
+    def publish_message(self, topic, message):
+        print(f"Sending to {topic}: {message}")
+        self.producer.send(topic, message)
+        self.producer.flush()
 
-# Send a message to a topic
-topic_name = 'meta data'
-message_data = meta_data
-producer.send(topic_name, message_data)
 
-# Ensure all messages are sent before closing
-producer.flush()
-print(f"Message sent to topic: {topic_name}")
+
+
+

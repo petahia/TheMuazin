@@ -4,6 +4,7 @@ import json
 import os
 import time
 
+
 class Producer:
     def __init__(self):
         kafka_broker = os.getenv("KAFKA_BROKER","kafka:9092")
@@ -17,11 +18,11 @@ class Producer:
                 break
             except NoBrokersAvailable:
                 print("Kafka broker not ready yet, waiting...")
-                time.sleep(2)
+                time.sleep(3)
 
-    def publish_message(self, topic, message):
+    def publish_message(self,topic,message):
         print(f"Sending to {topic}: {message}")
-        self.producer.send(topic, message)
+        self.producer.send(topic,message)
         self.producer.flush()
 
 

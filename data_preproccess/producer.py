@@ -7,7 +7,7 @@ import time
 
 class Producer:
     def __init__(self):
-        kafka_broker = os.getenv("KAFKA_BROKER","localhost:29092")
+        kafka_broker = os.getenv("KAFKA_BROKER","localhost:9092")
         while True:
             try:
                 self.producer = KafkaProducer(
@@ -20,7 +20,7 @@ class Producer:
                 print("Kafka broker not ready yet, waiting...")
                 time.sleep(3)
 
-    def publish_message(self,topic,message):
+    def send_message(self,topic,message):
         print(f"Sending to {topic}: {message}")
         self.producer.send(topic,message)
 

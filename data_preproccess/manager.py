@@ -3,7 +3,7 @@ import datetime
 from producer import Producer
 
 
-class SendMetaData:
+class ManagerSendMetaData:
     def __init__(self,path):
         self.path = path
         self.producer = Producer()
@@ -24,7 +24,7 @@ class SendMetaData:
                         'Last Modified': datetime.datetime.fromtimestamp(stats.st_mtime).isoformat(),
                         'Creation Time': datetime.datetime.fromtimestamp(stats.st_ctime).isoformat()
                     }
-                    self.producer.publish_message('muazin',meta_data)
+                    self.producer.send_message('muazin',meta_data)
 
 
                 except Exception as e:
@@ -37,7 +37,7 @@ class SendMetaData:
 
 if __name__ == '__main__':
     path = '/Users/petahiam/podcasts'
-    d = SendMetaData(path)
+    d = ManagerSendMetaData(path)
     d.run()
 
 

@@ -2,38 +2,37 @@ from pathlib import Path
 import datetime
 from producer import Producer
 
+
 class SendMetaData:
     def __init__(self,path):
         self.path = path
         self.producer = Producer()
 
 
-    def run(self):
+    def run(self,current_path=None):
         path_taken = Path(self.path)
+        if not any(path_taken.iterdir()):
+            return "the directory is empty"
         for file_path in path_taken.iterdir():
             if file_path.is_file():
-                file_path.touch()
                 try:
                     stats = file_path.stat()
                     meta_data = {
-                        'File Path': file_path,
+                        'File Path': str(file_path),
                         'File Name': file_path.name,
                         'File Size': stats.st_size,
-                        'Last Modified': datetime.datetime.fromtimestamp(stats.st_mtime),
-                        'Creation Time': datetime.datetime.fromtimestamp(stats.st_ctime)
+                        'Last Modified': datetime.datetime.fromtimestamp(stats.st_mtime).isoformat(),
+                        'Creation Time': datetime.datetime.fromtimestamp(stats.st_ctime).isoformat()
                     }
-                    self.producer.publish_message('meta_data',meta_data)
+                    self.producer.publish_message('muazin',meta_data)
 
-                except:
-                    print('can not get the meta data from this file')
+
+                except Exception as e:
+                    print(f"Error getting metadata from {file_path}: {e}")
             elif path_taken.is_dir():
                 print(f"Processing directory: {file_path}")
-                return self.run()
-            # need to add '/' to the function
-            elif not any(path_taken.iterdir()):
-                return "the directory is empty"
-
-
+                return self.run(f"{file_path}/")
+        return self.producer.close()
 
 
 if __name__ == '__main__':

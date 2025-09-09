@@ -1,16 +1,14 @@
 import hashlib
 
 class IDGenerator:
-    def __init__(self,hash_base):
+    def __init__(self,hash_base: list):
         self.hash_base = hash_base
 
     def generate_unique_id(self,file_data):
-        return hashlib.sha256(self.hash_base.encode()).hexdigest()
+        return hashlib.sha256(f"{file_data[self.hash_base[0]]}{file_data[self.hash_base[1]]}{file_data[self.hash_base[2]]}".encode()).hexdigest()
 
 
 
 
 
 
-
-hash_base = f"{file_data['name']}_{file_data['size']}_{file_data['creation_date']}"

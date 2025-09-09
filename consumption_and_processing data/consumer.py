@@ -13,4 +13,4 @@ class Consumer:
         )
 
 
-o = Consumer('muazin')
+

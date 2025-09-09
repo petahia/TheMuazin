@@ -3,6 +3,9 @@ from kafka.errors import NoBrokersAvailable
 import json
 import os
 import time
+from logger_proj import Logger
+logger = Logger.get_logger()
+
 
 
 class Producer:
@@ -14,14 +17,14 @@ class Producer:
                     bootstrap_servers=[kafka_broker],
                     value_serializer=lambda x: json.dumps(x).encode('utf-8')
                 )
-                print("Connected to Kafka!")
+                logger.info("Connected to Kafka!")
                 break
             except NoBrokersAvailable:
-                print("Kafka broker not ready yet, waiting...")
+                logger.error("Kafka broker not ready yet, waiting...")
                 time.sleep(3)
 
     def send_message(self,topic,message):
-        print(f"Sending to {topic}: {message}")
+        logger.info(f"Sending to {topic}: {message}")
         self.producer.send(topic,message)
 
     def close(self):

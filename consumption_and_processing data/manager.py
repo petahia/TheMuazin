@@ -2,6 +2,9 @@ from consumer import Consumer
 from mongo import MongoWavStorage
 from elastic import ElasticIndex
 from generate_id import IDGenerator
+from logger_proj import Logger
+logger = Logger.get_logger()
+
 
 class ManagerSendToMongoElastic:
     def __init__(self):
@@ -12,7 +15,7 @@ class ManagerSendToMongoElastic:
 
 
     def run(self):
-        print("Service started, waiting for messages from Kafka...")
+        logger.info("Service started, waiting for messages from Kafka...")
         for message in self.consume.consumer:
             try:
                 file_data = message.value
@@ -23,11 +26,10 @@ class ManagerSendToMongoElastic:
 
                 self.elastic_index.send_metadata_to_es(file_data, unique_id)
 
-                print(f"Processed file: {file_data['name']} with ID: {unique_id}")
+                logger.info(f"Processed file: {file_data['name']} with ID: {unique_id}")
 
             except Exception as e:
-                print(f"Error processing message: {e}")
-
+                logger.error(f"Error processing message: {e}")
 
 
 if __name__ == '__main__':

@@ -1,9 +1,12 @@
 from elasticsearch import Elasticsearch
+from logger_proj import Logger
+logger = Logger.get_logger()
+
 
 
 class ElasticIndex:
-    def __init__(self,index_name,connction_string):
-        self.es = Elasticsearch(connction_string)
+    def __init__(self,index_name,connection_string):
+        self.es = Elasticsearch(connection_string)
         self.index_name = index_name
 
     def send_metadata_to_es(self,file_data, unique_id):
@@ -19,7 +22,7 @@ class ElasticIndex:
             self.es.index(index=self.index_name, id=unique_id, document=doc)
 
         except Exception as e:
-            print(f"A problem occurred while indexing the data:{e}")
+            logger.info(f"A problem occurred while indexing the data:{e}")
 
 
 

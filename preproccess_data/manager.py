@@ -1,6 +1,9 @@
 from pathlib import Path
 import datetime
 from producer import Producer
+from logger_proj import Logger
+logger = Logger.get_logger()
+
 
 
 class ManagerSendMetaData:
@@ -12,7 +15,7 @@ class ManagerSendMetaData:
     def run(self,current_path=None):
         path_taken = Path(self.path)
         if not any(path_taken.iterdir()):
-            return "the directory is empty"
+            return logger.info("the directory is empty")
         for file_path in path_taken.iterdir():
             if file_path.is_file():
                 try:
@@ -28,9 +31,9 @@ class ManagerSendMetaData:
 
 
                 except Exception as e:
-                    print(f"Error getting metadata from {file_path}: {e}")
+                    logger.error(f"Error getting metadata from {file_path}: {e}")
             elif path_taken.is_dir():
-                print(f"Processing directory: {file_path}")
+                logger.info(f"Processing directory: {file_path}")
                 return self.run(f"{file_path}/")
         return self.producer.close()
 

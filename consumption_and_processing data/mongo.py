@@ -1,5 +1,7 @@
 from pymongo import MongoClient
 from gridfs import GridFS
+from logger_proj import Logger
+logger = Logger.get_logger()
 
 
 
@@ -22,5 +24,5 @@ class MongoWavStorage:
             return file_id
 
         except Exception as e:
-            print(f"Error saving WAV to MongoDB: {e}")
+            logger.error(f"Error saving WAV to MongoDB: {e}")
             return None

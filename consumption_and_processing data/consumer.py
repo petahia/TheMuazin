@@ -1,6 +1,6 @@
 from kafka import KafkaConsumer
 import json
-import os
+
 
 class Consumer:
     def __init__(self,topic):

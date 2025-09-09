@@ -26,3 +26,14 @@ class MongoWavStorage:
         except Exception as e:
             logger.error(f"Error saving WAV to MongoDB: {e}")
             return None
+
+
+    def retrieve_wav(self,unique_id):
+        try:
+            retrieved_file = self.fs.get(unique_id)
+            content = retrieved_file.read()
+            return content
+        except Exception as e:
+            logger.error(f"Error retrieving WAV from MongoDB: {e}")
+
+

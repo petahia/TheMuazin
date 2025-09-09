@@ -31,3 +31,7 @@ class Logger:
 
 
 
+logger = Logger.get_logger()
+
+logger.info(f"Processing directory:")
+logger.error(f"Error getting metadata from")

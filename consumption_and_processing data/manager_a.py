@@ -6,7 +6,7 @@ logger = Logger.get_logger()
 
 
 
-class ManagerSendMetaData:
+class PreProccess:
     def __init__(self,path):
         self.path = path
         self.producer = Producer()
@@ -40,7 +40,7 @@ class ManagerSendMetaData:
 
 if __name__ == '__main__':
     path = '/Users/petahiam/podcasts'
-    d = ManagerSendMetaData(path)
+    d = PreProccess(path)
     d.run()
 
 

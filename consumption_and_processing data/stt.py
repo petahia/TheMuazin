@@ -1,5 +1,5 @@
 import speech_recognition as sr
-from logger_proj import Logger
+from logger import Logger
 logger = Logger.get_logger()
 
 
@@ -13,6 +13,7 @@ class STT:
         try:
             text = self.recognizer.recognize_google(audio)
             logger.info(f"Transcription: {text}")
+            return text
         except sr.UnknownValueError:
             logger.error("Could not understand audio")
         except sr.RequestError as e:

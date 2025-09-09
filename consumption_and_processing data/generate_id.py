@@ -1,5 +1,5 @@
 import hashlib
-from logger_proj import Logger
+from logger import Logger
 logger = Logger.get_logger()
 
 

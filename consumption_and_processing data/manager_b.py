@@ -1,8 +1,8 @@
 from consumer import Consumer
-from mongo import MongoWavStorage
+from mongo_grid import MongoWavStorage
 from elastic import ElasticIndex
 from generate_id import IDGenerator
-from logger_proj import Logger
+from logger import Logger
 logger = Logger.get_logger()
 
 

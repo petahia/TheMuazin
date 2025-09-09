@@ -6,8 +6,7 @@ from datetime import datetime
 class Logger:
     _logger = None
     @classmethod
-    def get_logger(cls, name="muazin_logger", es_host='http://localhost:9200',
-                   index="muazin_index_logs", level=logging.DEBUG):
+    def get_logger(cls, name="muazin_logger", es_host='http://localhost:9200',index="muazin_index_logs", level=logging.DEBUG):
         if cls._logger:
             return cls._logger
         logger = logging.getLogger(name)

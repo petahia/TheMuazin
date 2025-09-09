@@ -3,7 +3,7 @@ from kafka.errors import NoBrokersAvailable
 import json
 import os
 import time
-from logger_proj import Logger
+from logger import Logger
 logger = Logger.get_logger()
 
 

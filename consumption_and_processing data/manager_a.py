@@ -1,7 +1,7 @@
 from pathlib import Path
 import datetime
 from producer import Producer
-from logger_proj import Logger
+from logger import Logger
 logger = Logger.get_logger()
 
 

@@ -1,7 +1,7 @@
 from stt import STT
-from mongo import MongoWavStorage
+from mongo_grid import MongoWavStorage
 from elastic import ElasticIndex
-from logger_proj import Logger
+from logger import Logger
 logger = Logger.get_logger()
 
 
@@ -13,5 +13,10 @@ class STTSaveToElastic:
         self.elastic_index = ElasticIndex('muazin','http://localhost:9200')
 
     def run(self):
+
+
+
+
+
 
 

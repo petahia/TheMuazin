@@ -1,5 +1,5 @@
 from elasticsearch import Elasticsearch
-from logger_proj import Logger
+from logger import Logger
 logger = Logger.get_logger()
 
 
@@ -9,7 +9,7 @@ class ElasticIndex:
         self.es = Elasticsearch(connection_string)
         self.index_name = index_name
 
-    def send_metadata_to_es(self,file_data, unique_id):
+    def send_metadata_to_es(self,file_data,unique_id):
         try:
             doc = {
                 "name": file_data["File Name"],
@@ -23,6 +23,19 @@ class ElasticIndex:
 
         except Exception as e:
             logger.info(f"A problem occurred while indexing the data:{e}")
+
+    def update_doc(self,text,unique_id):
+        try:
+            update_body = {
+                "doc": {
+                    "Text":text
+                }
+            }
+            response = self.es.update(index=self.index_name, id=unique_id, body=update_body)
+            return response
+
+        except Exception as e:
+            logger.info(f"A problem occurred while updating the data:{e}")
 
 
 

@@ -18,3 +18,4 @@ class STT:
             logger.error("Could not understand audio")
         except sr.RequestError as e:
             logger.error(f"Could not request results from Google Speech Recognition service; {e}")
+

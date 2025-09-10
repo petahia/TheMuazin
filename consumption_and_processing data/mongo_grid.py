@@ -36,4 +36,3 @@ class MongoWavStorage:
         except Exception as e:
             logger.error(f"Error retrieving WAV from MongoDB: {e}")
 
-

@@ -13,6 +13,29 @@ class STTSaveToElastic:
         self.elastic_index = ElasticIndex('muazin','http://localhost:9200')
 
     def run(self):
+        try:
+            for grid_out in self.mongo_storage.fs.find():
+                unique_id = grid_out._id
+
+                content = self.mongo_storage.retrieve_wav(unique_id)
+
+                text = self.stt.record_wav(content)
+
+                self.elastic_index.update_doc(text,unique_id)
+
+        except Exception as e:
+            logger.error(f"Error in STTSaveToElastic pipeline: {e}")
+
+
+
+
+if __name__ == '__main__':
+    s = STTSaveToElastic()
+    s.run()
+
+
+
+
 
 
 

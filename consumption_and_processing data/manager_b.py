@@ -26,7 +26,7 @@ class ManagerSendToMongoElastic:
 
                 self.elastic_index.send_metadata_to_es(file_data, unique_id)
 
-                logger.info(f"Processed file: {file_data['name']} with ID: {unique_id}")
+                logger.info(f"Processed file: {file_data['File Name']} with ID: {unique_id}")
 
             except Exception as e:
                 logger.error(f"Error processing message: {e}")

@@ -13,6 +13,7 @@ class PreProccess:
 
 
     def run(self,current_path=None):
+        logger.info("Service started")
         path_taken = Path(self.path)
         if not any(path_taken.iterdir()):
             return logger.info("the directory is empty")

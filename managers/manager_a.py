@@ -1,7 +1,7 @@
 from pathlib import Path
 import datetime
 from streaming.producer import Producer
-from logging.logger import Logger
+from documentation.logger import Logger
 logger = Logger.get_logger()
 
 

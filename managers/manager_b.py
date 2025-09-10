@@ -2,7 +2,7 @@ from streaming.consumer import Consumer
 from storage.mongo_grid import MongoWavStorage
 from storage.elastic import ElasticIndex
 from logics.generate_id import IDGenerator
-from logging.logger import Logger
+from documentation.logger import Logger
 logger = Logger.get_logger()
 
 
@@ -22,7 +22,7 @@ class ManagerSendToMongoElastic:
                 unique_id = self.id_generator.generate_unique_id(file_data)
                 file_path = file_data['File Path']
 
-                self.mongo_storage.save_wav(file_path,unique_id,file_data['File Name'])
+                # self.mongo_storage.save_wav(file_path,unique_id,file_data['File Name'])
 
                 self.elastic_index.send_metadata_to_es(file_data, unique_id)
 

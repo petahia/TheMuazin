@@ -1,5 +1,5 @@
-from logics import ContentClassification
-from elastic import ElasticIndex
+from logics.classification import ContentClassification
+from storage.elastic import ElasticIndex
 
 class SendClassifiedToElastic:
     def __init__(self,content):
@@ -8,6 +8,15 @@ class SendClassifiedToElastic:
 
     def run(self):
         try:
+            for hit in self.elastic_index.retrive_text()["hits"]["hits"]:
+                field_text = hit['_source']['field_to_loop']
+
+
+
+
+
+
+
 
 
 

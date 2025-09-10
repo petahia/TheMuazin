@@ -38,6 +38,19 @@ class ElasticIndex:
             logger.info(f"A problem occurred while updating the data:{e}")
 
 
+    def retrive_text(self):
+        try:
+            response = self.es.search(
+                index=self.index_name,
+                body={
+                    "query": {"match_all": {}},
+                    "_source": ["Text"]  # Specify the fields to retrieve
+                }
+            )
+            return response
+
+        except Exception as e:
+            logger.error(f"Error retrieving document: {e}")
 
 
 

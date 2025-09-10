@@ -1,6 +1,6 @@
-from stt import STT
-from mongo_grid import MongoWavStorage
-from elastic import ElasticIndex
+from logics.stt import STT
+from storage.mongo_grid import MongoWavStorage
+from storage.elastic import ElasticIndex
 from logger import Logger
 logger = Logger.get_logger()
 

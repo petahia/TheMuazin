@@ -1,5 +1,5 @@
 import speech_recognition as sr
-from logger import Logger
+from logging.logger import Logger
 logger = Logger.get_logger()
 
 

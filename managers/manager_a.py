@@ -1,7 +1,7 @@
 from pathlib import Path
 import datetime
 from streaming.producer import Producer
-from logger import Logger
+from logging.logger import Logger
 logger = Logger.get_logger()
 
 
@@ -39,9 +39,5 @@ class PreProccess:
         return self.producer.close()
 
 
-if __name__ == '__main__':
-    path = '/Users/petahiam/podcasts'
-    d = PreProccess(path)
-    d.run()
 
 

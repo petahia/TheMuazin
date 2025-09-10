@@ -1,5 +1,5 @@
 from elasticsearch import Elasticsearch
-from logger import Logger
+from logging.logger import Logger
 logger = Logger.get_logger()
 
 

@@ -1,7 +1,7 @@
 from logics.stt import STT
 from storage.mongo_grid import MongoWavStorage
 from storage.elastic import ElasticIndex
-from logger import Logger
+from logging.logger import Logger
 logger = Logger.get_logger()
 
 

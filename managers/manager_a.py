@@ -17,6 +17,7 @@ class PreProccess:
         path_taken = Path(self.path)
         if not any(path_taken.iterdir()):
             return logger.info("the directory is empty")
+
         for file_path in path_taken.iterdir():
             if file_path.is_file():
                 try:
@@ -33,8 +34,10 @@ class PreProccess:
 
                 except Exception as e:
                     logger.error(f"Error getting metadata from {file_path}: {e}")
+
             elif path_taken.is_dir():
                 logger.info(f"Processing directory: {file_path}")
+
                 return self.run(f"{file_path}/")
         return self.producer.close()
 

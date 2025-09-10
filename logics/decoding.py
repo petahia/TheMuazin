@@ -22,6 +22,6 @@ touple_lists_decoded = decode_hostile_lists(hostile_lists,non_hostile_lists)
 
 print(touple_lists_decoded)
 
-# for i,list in enumerate(decode_hostile_lists(hostile_lists,non_hostile_lists)):
-#     print(f"{i}.{list}")
+for i,list in enumerate(decode_hostile_lists(hostile_lists,non_hostile_lists)):
+    print(f"{i}.{list}")
 

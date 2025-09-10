@@ -10,15 +10,11 @@ class SendClassifiedToElastic:
         try:
             for hit in self.elastic_index.retrive_text()["hits"]["hits"]:
                 field_text = hit['_source']['field_to_loop']
+                self.calculate_danger_percentage(self)
 
+                self.set_criminal_event(self, percentage)
 
-
-
-
-
-
-
-
+                self.sesegment_danger_levels(self,percentage)
 
 
         except Exception as e:

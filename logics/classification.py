@@ -2,7 +2,7 @@ from decoding import *
 
 
 class ContentClassification:
-    def __init__(self,content: str): #צריך להעביר תוכן
+    def __init__(self,content: str):
         self.content = str(content)
         self.hostile_list = touple_lists_decoded[0]
         self.non_hostile_list = touple_lists_decoded[1]
@@ -13,7 +13,7 @@ class ContentClassification:
         appearances_non_hostile = 0
         words_of_text = self.content.lower().split(" ")
         amount_of_words = len(words_of_text)
-        # לא התחשבתי בצמד מילים
+
         for word in words_of_text:
             if word in self.hostile_list:
                 appearances_hostile += 1
@@ -39,36 +39,6 @@ class ContentClassification:
             return 'medium'
         else:
             return 'high'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-b = ContentClassification('genocide is me can sleep')
-print(b.calculate_danger_percentage())
-
-
-
-
-
 
 
 

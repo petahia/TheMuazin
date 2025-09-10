@@ -12,9 +12,9 @@ class SendClassifiedToElastic:
                 field_text = hit['_source']['field_to_loop']
                 self.calculate_danger_percentage(self)
 
-                self.set_criminal_event(self, percentage)
+                self.set_criminal_event(percentage)
 
-                self.sesegment_danger_levels(self,percentage)
+                self.sesegment_danger_levels(percentage)
 
 
         except Exception as e:
